@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<body>
+    <input type="text" id="num1" />
+    <input type="text" id="num2" />
+    <button id="sum">Add two numbers</button>
+    <h3></h3>
+    <script>
+        var sum = function (x, y) {
+            var z = +x + +y;
+            alert(z);
+        }
+        $('#sum').click(() => sum($('#num1').val(), $('#num2').val()));
+    </script>
+</body>
+</html>
