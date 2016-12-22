@@ -28,7 +28,7 @@ namespace HittingAngularjs
                       "~/Content/site.css"));
             bundles.Add(new Bundle("~/bundles/HittingAngularjs").
                 IncludeDirectory("~/Scripts/Controllers", "*.js").
-                Include("~/Scripts/HittinAngularjs.js"));
+                Include("~/Scripts/HittingAngularjs.js"));
         }
     }
 }

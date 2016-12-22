@@ -8,8 +8,14 @@
 <body>
     <input type="text" id="num1" />
     <input type="text" id="num2" />
-    <button id="sum">Add two numbers</button>
-    <h3></h3>
+    <button id="sum">Add two numbers</button><br />
+    <div ng-app>
+        <input ng-model="a" type="number">
+        <input ng-model="b" type="number">
+        <h1>{{ a + b }}</h1>
+    </div>
+
+    <h3>{{2+8}}</h3>
     <script>
         var sum = function (x, y) {
             var z = +x + +y;
