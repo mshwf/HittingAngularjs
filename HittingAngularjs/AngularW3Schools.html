@@ -4,40 +4,53 @@
     <title></title>
     <meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <style>
+        input.ng-invalid {
+            background-color: #E91E63;
+        }
+    </style>
 </head>
 <body>
-    <div ng-app="myApp" ng-controller="myController">
-        <p>First Name: <input type="text" ng-change="getName()" ng-model="fName" /></p>
-        <p>Last Name: <input type="text" ng-change="getName()" ng-model="lName" /></p>
-        <p>Full Name: <h1>{{Name.first+' '+Name.second}}</h1></p>
-        <br />
-        First number: <input type="text" ng-model="num1" /><br />
-        Second number: <input type="text" ng-model="num2" /><br />
-        Sum: <h4 ng-bind="+num1++num2"></h4>
-        <hr />
-        <div>
-            <h3>From W3Schools</h3>
-            <input type="text" ng-model="theColor" style="background-color:{{theColor}}" />
-            <div ng-init="">
-                <ul>
-                    <li ng-repeat="person in people">
-                        {{person.name+' is '+person.age+' years old'}}
-                    </li>
-                </ul>
+    <div ng-app="myApp">
+        <div ng-controller="myController">
+            <p>First Name: <input type="text" ng-change="getName()" ng-model="fName" /></p>
+            <p>Last Name: <input type="text" ng-change="getName()" ng-model="lName" /></p>
+            <p>Full Name: <h1>{{Name.first +' '+Name.second}}</h1></p>
+            <br />
+            First number: <input type="text" ng-model="num1" /><br />
+            Second number: <input type="text" ng-model="num2" /><br />
+            Sum: <h4 ng-bind="+num1++num2"></h4>
+            <hr />
+            <div>
+                <h3>From W3Schools</h3>
+                Color name: <input type="text" ng-model="theColor" style="background-color:{{theColor}}" />
+                <div>
+                    <ul>
+                        <li ng-repeat="person in people">
+                            {{person.name | uppercase +' is '+person.age+' years old'}}
+                        </li>
+                    </ul>
+                </div>
+                <form ng-app="" name="myForm">
+                    Email:<input type="email" name="myEmail" ng-model="tryIt" />
+                    <span ng-show="myForm.myEmail.$error.email">Not valid email</span>
+                    <br />
+                    This is required: <input type="text" required ng-model="u" />
+                </form>
+                With Angular directive: <me-in-red></me-in-red>
             </div>
+            <!--difference between $scope and $rootScope in $scope controller-->
+            global:<strong> {{global}}</strong><br />
+            local: <strong>{{local}}</strong>
         </div>
-
+        <hr />
+        <p>----In anotherCtrl controller----</p>
+        <div ng-controller="anotherCtrl">
+            <!--difference between $scope and $rootScope in $rootScope controller-->
+            global: <strong>{{global}}</strong><br />
+            local:<strong>{{local}}</strong>
+        </div>
     </div>
-    <script>
-        var app = angular.module('myApp', []);
-        app.controller('myController', function ($scope) {
-            $scope.people = [{ name: 'Ahmed', age: 28 }, { name: 'Tawfeeq', age: 55 }, { name: 'Samia', age: 22 }];
-            $scope.getName = function () {
-                $scope.Name = {
-                    first: $scope.fName, second: $scope.lName
-                }
-            };
-        })
-    </script>
+    <script src="ngController.js"></script>
 </body>
 </html>
