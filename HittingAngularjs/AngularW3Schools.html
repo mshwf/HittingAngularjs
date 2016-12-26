@@ -6,7 +6,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <style>
         input.ng-invalid {
-            background-color: #E91E63;
+            background-color: #f9302c;
+        }
+
+        #tblPeople, td, th {
+            width: 70%;
+            border: 1px solid green;
+        }
+
+        #tblPeople th {
+            cursor: default;
         }
     </style>
 </head>
@@ -25,11 +34,17 @@
                 <h3>From W3Schools</h3>
                 Color name: <input type="text" ng-model="theColor" style="background-color:{{theColor}}" />
                 <div>
-                    <ul>
-                        <li ng-repeat="person in people">
-                            {{person.name | uppercase +' is '+person.age+' years old'}}
-                        </li>
-                    </ul>
+                   Filter names: <input type="text" ng-model="fltrTbl"/>
+                    <table id="tblPeople">
+                        <tr>
+                            <th align="left" ng-click="orderItBy('name')">Name</th>
+                            <th align="left" ng-click="orderItBy('age')">Age</th>
+                        </tr>
+                        <tr ng-repeat="person in people | orderBy:ord | filter:fltrTbl">
+                            <td>{{person.name}}</td>
+                            <td>{{person.age}}</td>
+                        </tr>
+                    </table>
                 </div>
                 <form ng-app="" name="myForm">
                     Email:<input type="email" name="myEmail" ng-model="tryIt" />
@@ -40,14 +55,33 @@
                 With Angular directive: <me-in-red></me-in-red>
             </div>
             <!--difference between $scope and $rootScope in $scope controller-->
-            global:<strong> {{global}}</strong><br />
+            global:<strong>{{global | uppercase }}</strong><br />
             local: <strong>{{local}}</strong>
+            <h3>FILTERS</h3>
+            Upper case this: <input type="text" ng-model="n" />
+            <h1>{{n | uppercase}}</h1>
+            filter names containing letters: <input type="text" ng-model="fltr" />
+            <ul>
+                <li ng-repeat="name in names | filter:fltr" ng-bind="name | uppercase">
+                </li>
+            </ul>
+           PN: <input type="text" ng-model="name" ng-bind="n"/>
+           Proper Name: <h3 ng-bind="name | properName"></h3>
+            <h1 align="center">Services</h1>
+            Current URL: <h3>{{myUrl}}</h3>
+            http service: <h3>{{httpDone}}</h3>
+            Timeout: <h1>{{sayHello}}</h1>
+            $interval: <h2>{{time}}</h2>
+            convert this to hexdecimal: <input ng-model="num"/>
+            my Svc: <h3 ng-bind="hex((num | toNum))"></h3>
         </div>
-        <hr />
+        <hr/>
         <p>----In anotherCtrl controller----</p>
+        
+        
         <div ng-controller="anotherCtrl">
             <!--difference between $scope and $rootScope in $rootScope controller-->
-            global: <strong>{{global}}</strong><br />
+            global:<strong>{{global}}</strong><br />
             local:<strong>{{local}}</strong>
         </div>
     </div>
