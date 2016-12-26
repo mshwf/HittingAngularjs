@@ -14,9 +14,9 @@
             border: 1px solid green;
         }
 
-        #tblPeople th {
-            cursor: default;
-        }
+            #tblPeople th {
+                cursor: default;
+            }
     </style>
 </head>
 <body>
@@ -34,7 +34,7 @@
                 <h3>From W3Schools</h3>
                 Color name: <input type="text" ng-model="theColor" style="background-color:{{theColor}}" />
                 <div>
-                   Filter names: <input type="text" ng-model="fltrTbl"/>
+                    Filter names: <input type="text" ng-model="fltrTbl" />
                     <table id="tblPeople">
                         <tr>
                             <th align="left" ng-click="orderItBy('name')">Name</th>
@@ -65,20 +65,39 @@
                 <li ng-repeat="name in names | filter:fltr" ng-bind="name | uppercase">
                 </li>
             </ul>
-           PN: <input type="text" ng-model="name" ng-bind="n"/>
-           Proper Name: <h3 ng-bind="name | properName"></h3>
+            PN: <input type="text" ng-model="name" ng-bind="n" />
+            Proper Name: <h3 ng-bind="name | properName"></h3>
             <h1 align="center">Services</h1>
             Current URL: <h3>{{myUrl}}</h3>
             http service: <h3>{{httpDone}}</h3>
             Timeout: <h1>{{sayHello}}</h1>
             $interval: <h2>{{time}}</h2>
-            convert this to hexdecimal: <input ng-model="num"/>
-            my Svc: <h3 ng-bind="hex((num | toNum))"></h3>
+            convert this to hexdecimal(using sevice and filters): <input ng-model="num" />
+            my Svc: <h3 ng-bind="+num| toHexa"></h3>
+
+            convert this to hexdecimal(using sevice only): <input ng-model="numS" />
+            my Svc: <h3 ng-bind="hex(+numS)"></h3>
+            <h2 align="center">Select List</h2>
+            <!--strings-->
+            ng-options with array of strings: <select ng-model="sth" ng-options="n for n in names"></select><br />
+            ng-repeat with array of strings: <select>
+                <option ng-repeat="n in names" ng-bind="n"></option>
+            </select><br />
+            <!--Objects-->
+            ng-repeat with array of objects:
+            <select>
+                <option ng-repeat="n in people">{{n.name}}</option>
+            </select>
+            ng-options with array of objects:
+            <select ng-model="selected" ng-options="p.age for p in people"></select>
+            You've selected: <span>{{selected.name}}</span><br />
+            ng-options with object: select color code: <select ng-model="selectedItem" ng-options="d for (c,d) in colors"></select>
+            <span>{{selectedItem}}</span>
         </div>
-        <hr/>
+        <hr />
         <p>----In anotherCtrl controller----</p>
-        
-        
+
+
         <div ng-controller="anotherCtrl">
             <!--difference between $scope and $rootScope in $rootScope controller-->
             global:<strong>{{global}}</strong><br />
