@@ -20,8 +20,9 @@
     </style>
 </head>
 <body>
-    <div ng-app="myApp">
-        <div ng-controller="myController">
+    <div ng-app="myApp" ng-controller="myController">
+        <div ng-mouseover="getCords($event)">
+            <label style="border:1px solid red; position:fixed; background-color:#cdf1f1;right:20px;">coords: {{x+', '+y}}</label>
             <p>First Name: <input type="text" ng-change="getName()" ng-model="fName" /></p>
             <p>Last Name: <input type="text" ng-change="getName()" ng-model="lName" /></p>
             <p>Full Name: <h1>{{Name.first +' '+Name.second}}</h1></p>
@@ -87,22 +88,31 @@
             ng-repeat with array of objects:
             <select>
                 <option ng-repeat="n in people">{{n.name}}</option>
-            </select>
+            </select><br />
             ng-options with array of objects:
             <select ng-model="selected" ng-options="p.age for p in people"></select>
             You've selected: <span>{{selected.name}}</span><br />
             ng-options with object: select color code: <select ng-model="selectedItem" ng-options="d for (c,d) in colors"></select>
             <span>{{selectedItem}}</span>
+            <h2 align="center">Angular DOM & Events</h2>
+            <input type="checkbox" ng-model="some" />
+            <button ng-disabled="some">Check to disable</button><br />
+            <input type="checkbox" ng-model="hide" />
+            <span ng-hide="hide">Check to hide</span><br />
+            <input type="text" ng-model="n1" /> *
+            <input type="text" ng-model="n2" />
+            <button ng-click="result=n1* n2">result</button>
+            Result: <span>{{result}}</span>
         </div>
-        <hr />
-        <p>----In anotherCtrl controller----</p>
+    </div>
+    <hr />
+    <p>----In anotherCtrl controller----</p>
 
 
-        <div ng-controller="anotherCtrl">
-            <!--difference between $scope and $rootScope in $rootScope controller-->
-            global:<strong>{{global}}</strong><br />
-            local:<strong>{{local}}</strong>
-        </div>
+    <div ng-controller="anotherCtrl">
+        <!--difference between $scope and $rootScope in $rootScope controller-->
+        global:<strong>{{global}}</strong><br />
+        local:<strong>{{local}}</strong>
     </div>
     <script src="ngController.js"></script>
 </body>

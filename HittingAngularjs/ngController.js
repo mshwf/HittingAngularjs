@@ -1,6 +1,10 @@
 ﻿var app = angular.module('myApp', []);
 app.controller('myController', function ($scope, $http, $timeout, $interval, mySvc) {
-
+    $scope.getCords = function (ev) {
+        $scope.x = ev.clientX;
+        $scope.y = ev.clientY;
+    };
+    $scope.result = 0;
     $scope.hex = mySvc.fun;
     $scope.colors = { b: "blue", r: "red", g: "green", y: "yellow" };
     $scope.people = [{ name: 'Ahmed', age: 28 }, { name: 'Tawfeeq', age: 55 }, { name: 'Samya', age: 22 }
