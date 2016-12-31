@@ -10,7 +10,7 @@
         }
 
         #tblPeople, td, th {
-            width: 70%;
+            width: 25%;
             border: 1px solid green;
         }
 
@@ -52,7 +52,7 @@
                         Email:<input type="email" name="myEmail" ng-model="tryIt" />
                         <span ng-show="myForm.myEmail.$error.email">Not valid email</span>
                         <br />
-                        This is required: <input type="text" required ng-model="u" />
+                        This is required: <input type="text" ng-model="u" required />
                     </form>
                     With Angular directive: <me-in-red></me-in-red>
                 </div>
@@ -104,12 +104,17 @@
                 <input type="text" ng-model="n2" />
                 <button ng-click="result=n1* n2">result</button>
                 Result: <span>{{result}}</span>
+                <h2>Angular Validations</h2>
+                <form name="frm">
+                    <input type="text" name="ipt" ng-model="ipt" required />
+                    <input name="ipt2" />
+                    <input type="submit" name="name" value="Save" />
+                    <h1 ng-show="frm.ipt.$invalid && frm.ipt.$touched">this field is required</h1>
+                </form>
             </div>
         </div>
         <hr />
         <p>----In anotherCtrl controller----</p>
-
-
         <div ng-controller="anotherCtrl">
             <!--difference between $scope and $rootScope in $rootScope controller-->
             global:<strong>{{global}}</strong><br />
