@@ -104,6 +104,24 @@
                 <input type="text" ng-model="n2" />
                 <button ng-click="result=n1* n2">result</button>
                 Result: <span>{{result}}</span>
+                <h2 align="center">Angular Forms</h2>
+                Select Color:
+                <form>
+                    <input type="radio" id="red" ng-model="color" value="red" /><label for="red">Red</label>
+                    <input type="radio" id="blue" ng-model="color" value="blue" /><label for="blue">Blue</label>
+                    <input type="radio" id="green" ng-model="color" value="green" /><label for="green">Green</label>
+                </form>
+                <!--<div ng-switch="color">
+                    <div ng-switch-when="color">-->
+                        <h3 style="background-color:{{color}};">You've selected {{color}}</h3>
+                    </div>
+                    <!--<div ng-switch-when="blue">
+                        <h3 style="background-color:blue;">You've selected blue</h3>
+                    </div>
+                    <div ng-switch-when="green">
+                        <h3 style="background-color:green;">You've selected green</h3>
+                    </div>
+                </div>-->
             </div>
         </div>
         <hr />

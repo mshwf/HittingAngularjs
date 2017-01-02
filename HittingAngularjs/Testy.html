@@ -1,1 +1,46 @@
-﻿I've called within http service in angular.
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>With Angular</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="Scripts/angular-translate.min.js"></script>
+
+    <style>
+        * {
+            font-family: Verdana;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script src="Scripts/lang/ar.js"></script>
+    <script src="Scripts/lang/en.js"></script>
+    <script src="Scripts/lang/ru.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myController">
+        <h2>Trying AngularJS Translate</h2><hr />
+        <button ng-click="changeLanguage('en')">English</button>
+        <button ng-click="changeLanguage('ar')">Arabic</button>
+        <button ng-click="changeLanguage('ru')">Russian</button>
+        <span>{{"hello"|translate}}</span><br />
+    </div>
+    <script>
+        var app = angular.module('myApp', ['pascalprecht.translate']);
+        app.controller('myController', function ($scope, $translate) {
+            $scope.changeLanguage = function (key) {
+                $translate.use(key);
+            };
+        });
+
+        app.config(function ($translateProvider) {
+            $translateProvider.translations('ar', ar);
+            $translateProvider.translations('en', en);
+            $translateProvider.translations('ru', ru);
+            $translateProvider.preferredLanguage('en');
+
+        });
+    </script>
+</body>
+</html>

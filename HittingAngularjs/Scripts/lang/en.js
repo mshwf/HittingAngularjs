@@ -1,0 +1,1 @@
+﻿var en = { hello: 'Welcome!' };
